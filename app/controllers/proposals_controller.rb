@@ -1,8 +1,14 @@
 class ProposalsController < ApplicationController
-  before_action :set_property, only: %i[new create]
+
+  before_action :set_property, only: [:show, :new, :create]
+  before_action :authenticate_user!, only: [:show, :new, :index, :create]
 
   def show
     @proposal = Proposal.find(params[:id])
+  end
+
+  def index
+    @proposals = current_user.proposals
   end
 
   def new
@@ -13,6 +19,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.new(proposal_params)
     @proposal.property = @property
     @proposal.total_amount_calculator
+    @proposal.user = current_user
     if @proposal.save
       ProposalMailer.new_proposal(@proposal)
       flash[:message] = 'Proposta enviada com sucesso'

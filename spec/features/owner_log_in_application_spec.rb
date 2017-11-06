@@ -5,7 +5,7 @@ feature 'owner log in application' do
     owner = create(:owner, email: 'teste@teste.com', password: '123456')
 
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
 
     fill_in 'Email', with: owner.email
     fill_in 'Senha', with: owner.password
@@ -15,7 +15,7 @@ feature 'owner log in application' do
 
 
     expect(page).to have_content("Bem-vindo, #{owner.first_name}")
-    expect(page).not_to have_content("Entrar")
+    expect(page).not_to have_content("Entrar como proprietário")
     expect(page).to have_content("Sair")
   end
 
@@ -26,7 +26,7 @@ feature 'owner log in application' do
 
     #login_as(owner, :scope => :owner)
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
 
     fill_in 'Email', with: owner.email
     fill_in 'Senha', with: owner.password

@@ -23,4 +23,12 @@ feature 'User search for a property by location' do
     expect(page).to have_content property.photo
     expect(page).not_to have_content property_2.title
   end
+  scenario 'and finds nothing' do
+    visit root_path
+    fill_in 'Busca por Localização', with: 'Juquitiba'
+    click_on 'Buscar por Localização'
+
+    expect(page).to have_content 'Nenhum imóvel encontrado'
+    expect(current_path).to eq root_path
+  end
 end

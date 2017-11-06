@@ -1,8 +1,8 @@
 Comprovante de Locação
 
-Eu, João da Silva, portador(a) do CPF nº 111.222.333-44, declaro para os devidos
-fins que alugo o imóvel sito à <%= @proposal.property.address %>, para Maria da Silva,
-portador(a) do CPF nº 555.666.777-88, entre o período de
+Eu, <%= @proposal.property.owner.name %>, portador(a) do CPF nº <%= @proposal.property.owner.document %>, declaro para os devidos
+fins que alugo o imóvel sito à <%= @proposal.property.address %>, para <%= @proposal.user.name %>,
+portador(a) do CPF nº <%= @proposal.user.document %>, entre o período de
 <%= I18n.localize @proposal.start_date %> a <%= I18n.localize @proposal.end_date %>, pelo valor total de <%= number_to_currency(@proposal.total_amount) %>.
 
 Para este período devem ser respeitados as seguintes regras de uso:
